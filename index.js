@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 
 const filename1 = './data.json'
 
@@ -39,3 +40,18 @@ try {
 } catch (err) {
 	console.error(err)
 }
+
+// path testing
+
+const filename3 = './data3.json'
+
+console.log("Path info: ", path.dirname(filename3), path.basename(filename3, path.extname(filename3)), path.extname(filename3))
+
+console.log("Joined: ", path.join(path.dirname(filename3), '/', path.basename(filename3, path.extname(filename3)), path.extname(filename3)))
+
+console.log(path.resolve('/temp', filename3))
+
+console.log(path.normalize(filename3))
+
+// file reading
+
