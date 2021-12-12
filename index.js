@@ -105,3 +105,22 @@ try {
 // 		return
 // 	}
 // })
+
+// folder tests 
+const folderName1 = "./test"
+
+fs.access(folderName1, (err) => {
+	if (err) {
+		console.error(err)
+		return
+	}
+	console.log('huge success')
+})
+
+try {
+	if (!fs.existsSync(folderName1)) {
+		fs.mkdirSync(folderName1)
+	}
+} catch (err) {
+	console.error(err)
+}
