@@ -16,7 +16,7 @@ fs.stat(filename1, (err, stats) => {
 fs.open(filename1, 'a+', (err, fd) => {
 
 	fs.close(fd, (err) => {
-	
+
 	})
 })
 
@@ -77,7 +77,7 @@ try {
 const content = `{ "content": "putting stuff in files!"}`
 
 const filename4 = './data4.json'
-fs.writeFile(filename4, content, { flag: 'w+'}, err => {
+fs.writeFile(filename4, content, { flag: 'w+' }, err => {
 	if (err) {
 		console.error(err)
 		return
@@ -89,12 +89,12 @@ fs.writeFile(filename4, content, { flag: 'w+'}, err => {
 
 const content2 = `{ "content": "putting stuff in files asynchronously!"}`
 
-const filename5 = './data5.json'
+const filename5 = './test/data6.json'
 
 try {
 	fs.writeFileSync(filename5, content2)
 } catch (err) {
-		console.error(err)
+	console.error(err)
 }
 
 // appending tests 
@@ -124,3 +124,47 @@ try {
 } catch (err) {
 	console.error(err)
 }
+
+const readContent = fs.readdirSync(folderName1)
+
+console.log("read content", readContent[0])
+
+fs.readFile(`./test/${readContent[0]}`, 'utf8', (err, data) => {
+	if (err) {
+		console.error(err);
+		return
+	}
+	console.log(data)
+})
+
+const readFile = fs.readdirSync(folderName1).map(fileName => {
+	return path.join(folderName1, fileName)
+})
+
+console.log("Files read: ", readFile)
+
+readFile.map(currentFile => {
+	console.log(`List of all the files in ${folderName1}`)
+	fs.readFile(currentFile, 'utf8', (err, data) => {
+		if (err) {
+			console.error(err);
+			return
+		}
+		console.log("Current file: ", data)
+	})
+})
+
+// filtering the results 
+const folderName2 = `./test`
+
+const isFile = fileName => {
+	return fs.lstatSync(fileName).isFile()
+}
+
+const filtered = fs.readdirSync(folderName2).map(fileName => {
+	return path.join(folderName2, fileName)
+})
+	.filter(isFile)
+console.log(`Filtered out paths: `, filtered)
+
+// next up, Rename folder!!
