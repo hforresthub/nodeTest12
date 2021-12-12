@@ -168,3 +168,13 @@ const filtered = fs.readdirSync(folderName2).map(fileName => {
 console.log(`Filtered out paths: `, filtered)
 
 // next up, Rename folder!!
+
+fs.rename('./test', './test1', err => {
+	if (err) {
+		console.error(err)
+		return
+	}
+})
+
+// throws error because not permitted, dont want to change that atm
+
