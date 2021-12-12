@@ -55,3 +55,53 @@ console.log(path.normalize(filename3))
 
 // file reading
 
+fs.readFile(filename3, 'utf8', (err, data) => {
+	if (err) {
+		console.error(err);
+		return
+	}
+	console.log(data);
+})
+
+// async version
+
+try {
+	const data = fs.readFileSync(filename3, 'utf8')
+	console.log(data)
+} catch (err) {
+	console.error(err)
+}
+
+// file writing 
+
+const content = `{ "content": "putting stuff in files!"}`
+
+const filename4 = './data4.json'
+fs.writeFile(filename4, content, { flag: 'w+'}, err => {
+	if (err) {
+		console.error(err)
+		return
+	}
+	console.log('big success');
+})
+
+// async version 
+
+const content2 = `{ "content": "putting stuff in files asynchronously!"}`
+
+const filename5 = './data5.json'
+
+try {
+	fs.writeFileSync(filename5, content2)
+} catch (err) {
+		console.error(err)
+}
+
+// appending tests 
+
+// fs.appendFile(filename4, content2, err => {
+// 	if (err) {
+// 		console.error(err)
+// 		return
+// 	}
+// })
