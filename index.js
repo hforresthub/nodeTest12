@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const fse = require('fs-extra')
 
 const filename1 = './data.json'
 
@@ -182,10 +183,46 @@ fs.writeFile(filename4, content, { flag: 'w+' }, err => {
 
 const dir = './testb/'
 
-fs.rmdir(dir, (err) => {
-	if (err) {
-		throw err
-	}
+// fs.rmdir(dir, (err) => {
+// 	if (err) {
+// 		throw err
+// 	}
 
-	console.log(`${dir} is baleeted!`)
-})
+// 	console.log(`${dir} is baleeted!`)
+// })
+
+// fs.rm(dir, {recursive: true, force: true}, (err) => {
+// 	if (err) {
+// 		throw err
+// 	}
+
+// 	console.log(`${dir} is baleeeted`);
+// })
+
+// alternate fs, using fs-extra for added features
+
+// fse.remove(dir, err => {
+// 	console.error(err)
+// })
+
+// able to use promises 
+
+// fse.remove(dir)
+// 	.then(() => {
+
+// 	})
+// 	.catch(err => {
+// 		console.error(err)
+// 	})
+
+// or using async
+
+// async function removeDir(folder) {
+// 	try {
+// 		await fse.remove(folder)
+// 	} catch (err) {
+// 		console.error(err)
+// 	}
+// }
+
+// removeDir(dir)
