@@ -87,15 +87,15 @@ fs.writeFile(filename4, content, { flag: 'w+' }, err => {
 
 // async version 
 
-const content2 = `{ "content": "putting stuff in files asynchronously!"}`
+// const content2 = `{ "content": "putting stuff in files asynchronously!"}`
 
-const filename5 = './test/data6.json'
+// const filename5 = './test/data6.json'
 
-try {
-	fs.writeFileSync(filename5, content2)
-} catch (err) {
-	console.error(err)
-}
+// try {
+// 	fs.writeFileSync(filename5, content2)
+// } catch (err) {
+// 	console.error(err)
+// }
 
 // appending tests 
 
@@ -107,74 +107,85 @@ try {
 // })
 
 // folder tests 
-const folderName1 = "./test"
+// const folderName1 = "./testb"
 
-fs.access(folderName1, (err) => {
-	if (err) {
-		console.error(err)
-		return
-	}
-	console.log('huge success')
-})
+// fs.access(folderName1, (err) => {
+// 	if (err) {
+// 		console.error(err)
+// 		return
+// 	}
+// 	console.log('huge success')
+// })
 
-try {
-	if (!fs.existsSync(folderName1)) {
-		fs.mkdirSync(folderName1)
-	}
-} catch (err) {
-	console.error(err)
-}
+// try {
+// 	if (!fs.existsSync(folderName1)) {
+// 		fs.mkdirSync(folderName1)
+// 	}
+// } catch (err) {
+// 	console.error(err)
+// }
 
-const readContent = fs.readdirSync(folderName1)
+// const readContent = fs.readdirSync(folderName1)
 
-console.log("read content", readContent[0])
+// console.log("read content", readContent[0])
 
-fs.readFile(`./test/${readContent[0]}`, 'utf8', (err, data) => {
-	if (err) {
-		console.error(err);
-		return
-	}
-	console.log(data)
-})
+// fs.readFile(`./test/${readContent[0]}`, 'utf8', (err, data) => {
+// 	if (err) {
+// 		console.error(err);
+// 		return
+// 	}
+// 	console.log(data)
+// })
 
-const readFile = fs.readdirSync(folderName1).map(fileName => {
-	return path.join(folderName1, fileName)
-})
+// const readFile = fs.readdirSync(folderName1).map(fileName => {
+// 	return path.join(folderName1, fileName)
+// })
 
-console.log("Files read: ", readFile)
+// console.log("Files read: ", readFile)
 
-readFile.map(currentFile => {
-	console.log(`List of all the files in ${folderName1}`)
-	fs.readFile(currentFile, 'utf8', (err, data) => {
-		if (err) {
-			console.error(err);
-			return
-		}
-		console.log("Current file: ", data)
-	})
-})
+// readFile.map(currentFile => {
+// 	console.log(`List of all the files in ${folderName1}`)
+// 	fs.readFile(currentFile, 'utf8', (err, data) => {
+// 		if (err) {
+// 			console.error(err);
+// 			return
+// 		}
+// 		console.log("Current file: ", data)
+// 	})
+// })
 
-// filtering the results 
-const folderName2 = `./test`
+// // filtering the results 
+// const folderName2 = `./test`
 
-const isFile = fileName => {
-	return fs.lstatSync(fileName).isFile()
-}
+// const isFile = fileName => {
+// 	return fs.lstatSync(fileName).isFile()
+// }
 
-const filtered = fs.readdirSync(folderName2).map(fileName => {
-	return path.join(folderName2, fileName)
-})
-	.filter(isFile)
-console.log(`Filtered out paths: `, filtered)
+// const filtered = fs.readdirSync(folderName2).map(fileName => {
+// 	return path.join(folderName2, fileName)
+// })
+// 	.filter(isFile)
+// console.log(`Filtered out paths: `, filtered)
 
-// next up, Rename folder!!
+// // next up, Rename folder!!
 
-fs.rename('./test', './test1', err => {
-	if (err) {
-		console.error(err)
-		return
-	}
-})
+// fs.rename('./test', './test1', err => {
+// 	if (err) {
+// 		console.error(err)
+// 		return
+// 	}
+// })
 
 // throws error because not permitted, dont want to change that atm
 
+// remove a folder 
+
+const dir = './testb/'
+
+fs.rmdir(dir, (err) => {
+	if (err) {
+		throw err
+	}
+
+	console.log(`${dir} is baleeted!`)
+})
